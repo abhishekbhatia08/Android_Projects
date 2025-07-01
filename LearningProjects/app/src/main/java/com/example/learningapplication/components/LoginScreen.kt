@@ -32,12 +32,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.example.learningapplication.routes.Routes
 
-@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun LoginUi(modifier: Modifier = Modifier) {
+fun LoginUi(navController: NavController) {
     var userName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -91,6 +91,7 @@ fun LoginUi(modifier: Modifier = Modifier) {
                         Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show()
                         return@Button
                     } else {
+                        navController.navigate(Routes.homeRoute(userName))
                         Toast.makeText(context, "Welcome $userName", Toast.LENGTH_SHORT).show()
                     }
                 }, modifier = Modifier

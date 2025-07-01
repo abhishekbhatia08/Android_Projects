@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.learningapplication"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.learningapplication"
@@ -16,6 +16,11 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    lint {
+        disable.add("NullSafeMutableLiveData")
+        checkReleaseBuilds = false  // Optional: disables lint for release builds
     }
 
     buildTypes {
@@ -33,6 +38,9 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+    lint {
+        checkReleaseBuilds = false
     }
 }
 
@@ -53,4 +61,5 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.androidx.navigation.compose)
 }
